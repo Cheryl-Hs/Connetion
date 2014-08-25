@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>My Tree</title>
+	<link rel="stylesheet" type="text/css" href="../../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../demo.css">
+	<script type="text/javascript" src="../../jquery.min.js"></script>
+	<script type="text/javascript" src="../../jquery.easyui.min.js"></script>
+</head>
+	<script type="text/javascript">
+		function getSelected(){
+			var node = $('#tt').tree('getSelected');
+			if (node){
+				var s = node.text;
+				if (node.attributes){
+					s += ","+node.attributes.p1+","+node.attributes.p2;
+				}
+				alert(s);
+			}
+		}
+	</script>
+<body>
+	<h2>My Tree</h2>
+	<div style="margin:20px 0;width:20%"></div>
+	<div class="easyui-panel" style="padding:5px;width:200px;height:550px;">
+		<ul id="tt" class="easyui-tree" data-options="
+				url:'tojson.json',
+				method:'get',
+				animate:true,
+				lines:true,
+				onDblClick: function(node){
+					getSelected();
+				}
+		"></ul>
+	</div>
+
+</body>
+</html>

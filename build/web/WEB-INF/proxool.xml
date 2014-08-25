@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<something-else-entirely>
+<proxool>
+    <alias>proxool</alias>
+    <driver-url>jdbc:mysql://localhost/localserver</driver-url>
+      <driver-class>com.mysql.jdbc.Driver</driver-class>
+<driver-properties>
+   <property name="user" value="root" />
+   <property name="password" value="" />
+</driver-properties>
+<house-keeping-sleep-time>90000</house-keeping-sleep-time>
+<prototype-count>5</prototype-count>
+<maximum-connection-lifetime>24000000</maximum-connection-lifetime>
+<maximum-connection-count>100</maximum-connection-count>
+<minimum-connection-count>10</minimum-connection-count>
+<simultaneous-build-throttle>100</simultaneous-build-throttle>
+   <maximum-active-time>3000000</maximum-active-time>
+<trace> true</trace>
+</proxool>
+</something-else-entirely>

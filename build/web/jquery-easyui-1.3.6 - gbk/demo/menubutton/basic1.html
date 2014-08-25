@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="gbk">
+	<title>Basic ProgressBar - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="../../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../demo.css">
+	<script type="text/javascript" src="../../jquery.min.js"></script>
+	<script type="text/javascript" src="../../jquery.easyui.min.js"></script>
+	
+</head>
+<body bgcolor="#CCEEFF">
+	
+	<h2>互联网位置服务信息--运行状态</h2>
+	
+<div style="position:absolute; top:60px; width:2200px;">
+	<div style="margin:10px 0;">
+		<a href="#" class="easyui-linkbutton" onclick="开始()" value="移上来变色" onmouseover="this.style.backgroundColor='#ff0000';" onmouseout="this.style.backgroundColor='';">开始</a>
+                <a href="#" class="easyui-linkbutton" onclick="停止()" value="移上来变色" onmouseover="this.style.backgroundColor='#ff0000';" onmouseout="this.style.backgroundColor='';">停止</a>
+                <a href="#" class="easyui-linkbutton" onclick="详细信息()" value="移上来变色" onmouseover="this.style.backgroundColor='#ff0000';" onmouseout="this.style.backgroundColor='';">详细信息</a>
+                <a href="#" class="easyui-linkbutton" onclick="更新规则()" value="移上来变色" onmouseover="this.style.backgroundColor='#ff0000';" onmouseout="this.style.backgroundColor='';">更新规则</a>
+	</div>
+</div>
+<div style="position:absolute; top:112px; width:2200px;">
+	<div style="margin:10px 0;">
+		<div>搜索深度：<input type="text" name="ss1" style="width:100px;" />
+		     搜索线程：<input type="text" name="ss2" style="width:100px;" />
+		     解析线程：<input type="text" name="jx" style="width:100px;" />
+		     网站链接：<input type="text" name="wz" style="width:200px;" />
+		</div>
+		<div>链接总数：<input type="text" name="lj1" style="width:192px;" />
+		     链接完成：<input type="text" name="lj2" style="width:192px;" />
+		     搜索链接：<div style="display:inline-block;" ><div id="p" class="easyui-progressbar" style="width:205px;margin-top:5px;"></div></div>	
+		</div>
+		<div>网页总数：<input type="text" name="wy" style="width:76px;" />
+		     完成：<input type="text" name="wc" style="width:76px;" />
+		     匹配：<input type="text" name="pp" style="width:76px;" />
+		     不匹配<input type="text" name="bpp" style="width:76px;" />
+		     网页处理：<div style="display:inline-block;" ><div id="q" class="easyui-progressbar" style="width:205px;" ></div></div>	
+		</div>
+		<div>解析总数：<input type="text" name="jx2" style="width:76px;" />
+		     直接：<input type="text" name="zj" style="width:76px;" />
+		     歧义：<input type="text" name="qy" style="width:76px;" />
+		     无效：<input type="text" name="wx1" style="width:76px;" />
+		     位置解析：<div style="display:inline-block;" ><div id="m" class="easyui-progressbar" style="width:205px;" ></div></div>	
+		</div>
+		<div>解析结果：<input type="text" name="jx3" style="width:76px;" />
+		     有效：<input type="text" name="yx" style="width:76px;" />
+		     无效：<input type="text" name="wx2" style="width:76px;" />
+		     冲突：<input type="text" name="ct" style="width:76px;" />
+		     解析结果：<div style="display:inline-block;" ><div id="n" class="easyui-progressbar" style="width:205px;" ></div></div>	
+		</div>
+	</div>
+</div>
+	<script>
+		function 开始(){
+			var value = $('#p').progressbar('getValue');
+			if (value < 100){
+				value += Math.floor(Math.random() * 10);
+				$('#p').progressbar('setValue', value);
+				setTimeout(arguments.callee, 200);
+			}
+		};
+	</script>
+<script>
+		function 停止(){
+			var value = $('#q').progressbar('getValue');
+			if (value < 100){
+				value += Math.floor(Math.random() * 10);
+				$('#q').progressbar('setValue', value);
+				setTimeout(arguments.callee, 200);
+			}
+		};
+	</script>
+<script>
+		function 详细信息(){
+			var value = $('#m').progressbar('getValue');
+			if (value < 100){
+				value += Math.floor(Math.random() * 10);
+				$('#m').progressbar('setValue', value);
+				setTimeout(arguments.callee, 200);
+			}
+		};
+	</script>
+<script>
+		function 更新规则(){
+			var value = $('#n').progressbar('getValue');
+			if (value < 100){
+				value += Math.floor(Math.random() * 10);
+				$('#n').progressbar('setValue', value);
+				setTimeout(arguments.callee, 200);
+			}
+		};
+	</script>
+<div style="position:absolute; top:260px; width:2200px;">
+<table>
+<tr>
+<td>
+    <form action="" method="get"> 
+    网页特征匹配<br /><br /> 
+    <label><input name="Fruit" type="radio" value="" />完成总数 </label> 
+    <label><input name="Fruit" type="radio" value="" />匹配</label> 
+    <label><input name="Fruit" type="radio" value="" />不匹配 </label> 
+    </form> 
+</td>
+<td></br></td>
+<td></br></td>
+<td></br></td>
+<td>
+ <form action="" method="get"> 
+    位置服务信息--解析…<br /><br /> 
+    <label><input name="Fruit" type="radio" value="" />全体 </label> 
+    <label><input name="Fruit" type="radio" value="" />直接</label> 
+    <label><input name="Fruit" type="radio" value="" />歧义 </label> 
+    </form> 
+</td>
+<td></br></td>
+<td></br></td>
+<td></br></td>
+<td>
+<form action="" method="get"> 
+   位置服务信息--分类<br/><br/> 
+    <label><input name="Fruit" type="radio" value="" />全体 </label> 
+    <label><input name="Fruit" type="radio" value="" />基本</label> 
+    <label><input name="Fruit" type="radio" value="" />有效 </label> 
+    <label><input name="Fruit" type="radio" value="" />无效 </label>
+    </form>
+</td>
+<td></br></td>
+<td></br></td>
+<td></br></td>
+<td>
+ 
+<form action="" method="get"> 
+   位置服务信息--冲突<br /><br /> 
+    <label><input name="Fruit" type="radio" value="" />全体 </label> 
+    <label><input name="Fruit" type="radio" value="" />冲突</label> 
+    <label><input name="Fruit" type="radio" value="" />非冲突 </label> 
+    <label><input name="Fruit" type="radio" value="" />无效 </label>
+    </form>  
+ </td>
+</tr>
+</table>
+</div>
+<div style="position:absolute; left:0px;right:0px;top:320px;border:3px solid;border-color:#0000FF; height:1000px;">
+
+</div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+[{
+	"id":1,
+	"text":"地址",
+	"children":[{
+		"id":11
+		"text":"上海市",
+		"state":"closed",
+		"children":[{
+			"id":111
+			"text":"上海市辖区",
+			"state":"closed",
+			"children":[{
+				"id":1111
+				"text":"南汇区"
+			},{
+			
+				"text":"卢湾区"
+			},{
+			
+				"text":"嘉定区"
+			},{
+			
+				"text":"奉贤区"
+			},{
+
+				"text":"宝山区"
+			}]
+		},{
+			"id":112,
+			"text":"上海市辖县",
+			"state":"closed",
+			"children":[{
+				"id":1121,
+				"text":"崇明县",
+				"attributes":{
+					"p1":"Custom Attribute1",
+					"p2":"Custom Attribute2"
+				}
+			}]
+		}]
+	},{
+		"id":12,
+		"text":"云南省",
+		"state":"closed",
+		"children":[{
+		"id":121,
+			"text":"临沧市",
+			"state":"closed",
+			"children":[{
+				"id":1211,
+				"text":"临翔区"
+			},{
+				"id":1212,
+				"text":"云县"
+			},{
+				"id":1213,
+				"text":"凤庆县"
+			}]
+		},{
+			"id":122,
+			"text":"丽江市",
+			"state":"closed",
+			"children":[{
+				"id":1221,
+				"text":"华坪县"
+			},{
+				"id":1222,
+				"text":"古城区"
+			},{
+				"id":1223,
+				"text":"市辖区",
+				"attributes":{
+					"p1":"Custom Attribute1",
+					"p2":"Custom Attribute2"
+				}
+			}]
+		}]
+	}]
+}]

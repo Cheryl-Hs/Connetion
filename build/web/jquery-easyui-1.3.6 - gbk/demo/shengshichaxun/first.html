@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="gbk">
+	<title>Basic ProgressBar - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="../../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../demo.css">
+	<script type="text/javascript" src="../../jquery.min.js"></script>
+	<script type="text/javascript" src="../../jquery.easyui.min.js"></script>
+</head>
+	<script type="text/javascript">
+		function getSelected(){
+			var node = $('#tt').tree('getSelected');
+			if (node){
+				var s = node.text;
+				if (node.attributes){
+					s += ","+node.attributes.p1+","+node.attributes.p2;
+				}
+				alert(s);
+			}
+		}
+	</script>
+<body>
+<body bgcolor="#CCEEFF">
+	
+	<div style="margin:10px 0;">
+
+<div style="position:fixed; left:0px;right:0px;top:0px;border:3px solid;border-color:#AAAAAA;">
+	<div style="margin:20px 0;width:20%"></div>
+	<div class="easyui-panel" style="position:fixed; left:0px;right:0px;top:0px;bottom:0px;border:3px solid;border-color:#AAAAAA;">
+		<ul id="tt" class="easyui-tree" data-options="
+				url:'tojson.json',
+				method:'get',
+				animate:true,
+				onDblClick: function(node){
+					getSelected();
+				}
+		"></ul>
+	</div>
+
+</div>
+		
+
+
+</body>
+</html>
