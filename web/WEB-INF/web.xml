@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <servlet>
         <servlet-name>proxoolServletConfigurator</servlet-name>
         <servlet-class>org.logicalcobwebs.proxool.configuration.ServletConfigurator</servlet-class>
@@ -13,9 +13,97 @@
         <servlet-name>Admin</servlet-name>
         <servlet-class>org.logicalcobwebs.proxool.admin.servlet.AdminServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>basicServelet</servlet-name>
+        <servlet-class>gi.basicServelet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Districts</servlet-name>
+        <servlet-class>gi.Districts</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PostCodeServelet</servlet-name>
+        <servlet-class>gi.PostCodeServelet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>API_Search_left_Servelet</servlet-name>
+        <servlet-class>gi.API_Search_left_Servelet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>API_Search_right_Servelet</servlet-name>
+        <servlet-class>gi.API_Search_right_Servelet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Classify_Search_left_</servlet-name>
+        <servlet-class>gi.Classify_Search_left_</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Districts_left_Servelet</servlet-name>
+        <servlet-class>gi.Districts_left_Servelet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>postcode_Servlet</servlet-name>
+        <servlet-class>gi.postcode_Servlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Postcode_Servelet_left</servlet-name>
+        <servlet-class>gi.Postcode_Servelet_left</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Admin</servlet-name>
         <url-pattern>/admin</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>GiServelet</servlet-name>
+        <servlet-class>gi.GiServelet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>giServlet</servlet-name>
+        <servlet-class>gi.giServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GiServelet</servlet-name>
+        <url-pattern>/GiServelet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>giServlet</servlet-name>
+        <url-pattern>/giServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>basicServelet</servlet-name>
+        <url-pattern>/basicServelet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Districts</servlet-name>
+        <url-pattern>/Districts</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PostCodeServelet</servlet-name>
+        <url-pattern>/PostCodeServelet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>API_Search_left_Servelet</servlet-name>
+        <url-pattern>/API_Search_left_Servelet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>API_Search_right_Servelet</servlet-name>
+        <url-pattern>/API_Search_right_Servelet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Classify_Search_left_</servlet-name>
+        <url-pattern>/Classify_Search_left_</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Districts_left_Servelet</servlet-name>
+        <url-pattern>/Districts_left_Servelet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>postcode_Servlet</servlet-name>
+        <url-pattern>/postcode_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Postcode_Servelet_left</servlet-name>
+        <url-pattern>/Postcode_Servelet_left</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -23,6 +111,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>mzTest.html</welcome-file>
     </welcome-file-list>
 </web-app>

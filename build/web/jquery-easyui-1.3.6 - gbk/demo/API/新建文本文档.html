@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<link rel="stylesheet" type="text/css" href="../../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../demo.css">
+	<script type="text/javascript" src="../../jquery.min.js"></script>
+	<script type="text/javascript" src="../../jquery.easyui.min.js"></script>
+<style type="text/css">
+div#container{width:1303px}
+div#header {background-color:#CCEEFF; border:1px solid #AAAAAA;height:50px}
+div#menu {background-color:#CCEEFF; border:1px solid #AAAAAA;height:540px; width:300px; float:left;}
+div#content {background-color:#CCEEFF; border-right:1px solid #AAAAAA; border-top:1px solid #AAAAAA; border-bottom:1px solid #AAAAAA;
+height:540px; width:1000px; float:left;}
+div#footer {background-color:#CCEEFF; width:1303px;border:1px solid #AAAAAA;clear:both; text-align:center;}
+h1 {margin-bottom:0;}
+h2 {margin-bottom:0; font-size:14px;}
+ul {margin:0;}
+li {list-style:none;}
+</style>
+</head>
+
+<script type="text/javascript">
+		function getSelected(){
+			var node = $('#tt').tree('getSelected');
+			if (node){
+				var s = node.text;
+				if (node.attributes){
+					s += ","+node.attributes.p1+","+node.attributes.p2;
+				}
+				alert(s);
+			}
+		}
+	</script>
+
+<body bgcolor="#CCEEFF">
+
+<div id="container">
+
+<div id="header">
+<a href="#"text-align=center; class="easyui-linkbutton" onclick="开始搜索()" value="开始搜索" onmouseover="this.style.backgroundColor='#ff0000';" onmouseout="this.style.backgroundColor='';">开始搜索</a> </div>
+</div>
+
+<div id="menu">
+
+	<div style="margin:20px 0;width:30%"></div>
+	<div class="easyui-panel" style="padding:5px;top:0px;width:300px;height:500px;">
+		<ul id="tt" class="easyui-tree" data-options="
+				url:'tojson.json',
+				method:'get',
+				animate:true,
+				onDblClick: function(node){
+					getSelected();
+				}
+		"></ul>
+	</div>
+</div>
+
+<div id="content"></div>
+
+<div id="footer">表格与树</div>
+
+</div>
+
+</body>
+</html>

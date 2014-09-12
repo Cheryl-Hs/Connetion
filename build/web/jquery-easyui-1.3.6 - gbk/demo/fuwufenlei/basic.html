@@ -1,19 +1,243 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="gbk">
-	<title>Basic ProgressBar - jQuery EasyUI Demo</title>
+<meta charset="UTF-8">
+	<title>My Tree</title>
 	<link rel="stylesheet" type="text/css" href="../../themes/default/easyui.css">
 	<link rel="stylesheet" type="text/css" href="../../themes/icon.css">
 	<link rel="stylesheet" type="text/css" href="../demo.css">
 	<script type="text/javascript" src="../../jquery.min.js"></script>
 	<script type="text/javascript" src="../../jquery.easyui.min.js"></script>
+	
 </head>
+	
 
-<frameset cols="15%,85%">
-<frame src="right-1.html"  scrolling="auto"/>
-<frame src="right-1.html" scrolling="auto" />
-</frameset>
+<body bgcolor="#CCEEFF">
+<div style="float:left; width:250px; height:470px; border:2px solid #0000FF;">
+    <table id="dg" class="easyui-datagrid" title="信息采集" style="width:250px;height:470px;"
+			data-options="rownumbers:true,
+               pagination:true,singleSelect:true,collapsible:true,url: '/DataGrid11/Classify_Search_left_',method:'get'">
+		<thead>
+		<tr>
+		    <th data-options="field:'id',hidden: true">ID</th>
+                    <th data-options="field:'label',width:220,align:'center',editor:'text'">分类</th>
+		</tr>
+		</thead>
+	</table>
+
+	
+</div>
+<div id="ss" style="float:left; width:1000px; height:470px; border-right:2px solid #0000FF; border-top:2px solid #0000FF; border-bottom:2px solid #0000FF;">
+     <table id="dg" class="easyui-datagrid" title="地理位置信息解析" style="width:1000px;height:470px;"
+               data-options="
+               rownumbers:true,
+               pagination:true,
+               iconCls: 'icon-edit',
+               singleSelect:true,
+               toolbar: '#tb',
+               url: '/DataGrid11/GiServelet?method=1',
+               method: 'get',
+               onClickRow: onClickRow
+               ">
+            <thead>
+
+                <!--{"total":100,"rows":[{"classify":"a","name":"a","area":"a","telephone":"a","zipcode":"a","address":"w","province":"w","region":"e","county":"r","towm":"t","village":"y","road":"u","harry":"i","building":"o"}]}-->
+                <tr>           
+                    <th data-options="field:'id',hidden: true">ID</th>
+                    <th data-options="field:'name',width:80,align:'center',editor:'text'">名称</th>
+                    <th data-options="field:'label',width:80,align:'center',editor:'text'">分类</th>
+                    <th data-options="field:'address',width:80,align:'center',editor:'text'">地址</th>
+                    <th data-options="field:'postcode',width:80,align:'center',editor:'text'">邮编</th>
+                    <th data-options="field:'phonecode',width:80,align:'center',editor:'text'">区号</th>
+                    <th data-options="field:'phone',width:80,align:'center',editor:'text'">电话</th>
+                    <th data-options="field:'province',width:80,align:'center',editor:'text'">省份</th>
+                    <th data-options="field:'city',width:80,align:'center',editor:'text'">地市</th>
+                    <th data-options="field:'county',width:80,align:'center',editor:'text'">区县</th>
+                    <th data-options="field:'township',width:80,align:'center',editor:'text'">乡镇</th>
+                    <th data-options="field:'village',width:80,align:'center',editor:'text'">村</th>
+                    <th data-options="field:'road',width:80,align:'center',editor:'text'">路</th>
+                    <th data-options="field:'roadNo',width:80,align:'center',editor:'text'">牌号</th>
+                    <th data-options="field:'building',width:80,align:'center',editor:'text'">建筑</th>
+                    <th data-options="field:'floor',width:80,align:'center',editor:'text'">楼层</th>
+                    <th data-options="field:'room',width:80,align:'center',editor:'text'">户号</th>
+                    <th data-options="field:'date',width:80,align:'center',editor:'datetimebox'">日期</th>
+                    <th data-options="field:'url',width:80,align:'center',editor:'text'">来源</th>
+                    <th data-options="field:'flag',width:80,align:'center',editor:'text'">标志</th>
+                </tr>
+            </thead>
+        </table>
+        <div id="tb" style="height:auto">
+            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="append()">增加</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="removeit()">删除</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true" onclick="accept()">保存</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-undo',plain:true" onclick="reject()">撤销</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="getChanges()">记录改变数</a>
+
+        </div>
+
+        <script>
+            $.extend($.fn.datagrid.defaults.editors, {
+                datetimebox: {
+                    init: function(container, options) {
+                        var input = $('<input type="text" class="easyui-datetimebox">')
+                                .appendTo(container);
+                        //编辑框延迟加载
+                        window.setTimeout(function() {
+                            input.datetimebox($.extend({editable: false}, options));
+                        }, 10);
+                        //input.datetimebox($.extend({ editable: false }, options));
+                        return input;
+                    },
+                    getValue: function(target) {
+                        return $(target).datetimebox('getValue');
+                    },
+                    setValue: function(target, value) {
+                        $(target).val(value);
+                        window.setTimeout(function() {
+                            $(target).datetimebox('setValue', value);
+                        }, 150);
+                    },
+                    resize: function(target, width) {
+                        var input = $(target);
+                        if ($.boxModel == true) {
+                            input.width(width - (input.outerWidth() - input.width()));
+                        } else {
+                            input.width(width);
+                        }
+                    }
+                }
+            });
+// var editIndex = undefined;
+//	    function endEditing() {
+//	        if (editIndex == undefined) { return true }
+//	        if ($('#dg').datagrid('validateRow', editIndex)) {
+//	            var ed = $('#dg').datagrid('getEditor', { index: editIndex, field: 'productid' });
+//	            var productname = $(ed.target).combobox('getText');
+//	            $('#dg').datagrid('getRows')[editIndex]['productname'] = productname;
+//	            $('#dg').datagrid('endEdit', editIndex);
+//	            editIndex = undefined;
+//	            return true;
+//	        } else {
+//	            return false;
+//	        }
+//	    }
+            $.fn.datebox.defaults.formatter = function(date) {
+                var y = date.getFullYear();
+                var m = date.getMonth() + 1;
+                var d = date.getDate();
+                return y + '-' + m + '-' + d;
+            }
+            $(function() {
+                var pager = $('#dg').datagrid().datagrid('getPager');
+            })
+            var editIndex = undefined;
+            function endEditing() {
+                if (editIndex == undefined) {
+                    return true;
+                }
+                if ($('#dg').datagrid('validateRow', editIndex)) {
+//                        var ed = $('#dg').datagrid('getEditor', {index: editIndex, field: 'classify'});
+//                        var classifyname = $(ed.target).combobox('getText');
+//                        $('#dg').datagrid('getRows')[editIndex]['classifyname'] = classifyname;
+                    $('#dg').datagrid('endEdit', editIndex);
+                    editIndex = undefined;
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            function onClickRow(index) {
+                if (editIndex != index) {
 
 
+                    if (endEditing()) {
+                        $('#dg').datagrid('selectRow', index)
+                                .datagrid('beginEdit', index);
+                        editIndex = index;
+                    } else {
+                        $('#dg').datagrid('selectRow', editIndex);
+                    }
+                    $('#dg').datagrid('updateRow', {});
+                }
+            }
+            function append() {
+                if (endEditing()) {
+                    var timeNow = new Date().format("yyyy-MM-dd hh:mm;ss");
+                    //   var inputstr="<input type='text' class='easyui-datetimebox' value='"+nowStr+"'/>";
+                    //`ID`, `classify`, `name`, `area`, `telephone`, `zipcode`, `address`, `province`, `region`, `county`, `towm`, `village`, `road`, `harry`, `building`, `floor`, `houseid`, `date`, `source`, `flag`
+                                   //   $('#dg').datagrid('appendRow', {date: timeNow});
+
+            $('#dg').datagrid('appendRow', { name: "", label: "", address: "", postcode: "", phonecode: "", phone: "", province: "", city: "", county: "", township: "", village: "", road: "", roadNo: "", building: "", floor: "", room: "", date: timeNow, url: "", flag: ""});
+                    editIndex = $('#dg').datagrid('getRows').length - 1;
+                    $('#dg').datagrid('selectRow', editIndex)
+                            .datagrid('beginEdit', editIndex);
+                }
+            }
+            function removeit() {
+                if (editIndex == undefined) {
+                    return
+                }
+                $('#dg').datagrid('cancelEdit', editIndex)
+                        .datagrid('deleteRow', editIndex);
+                editIndex = undefined;
+            }
+            function accept() {
+                if (endEditing()) {
+                    submit();
+                    var inserted = $("#dg").datagrid('getChanges', "inserted");
+                    var deleted = $("#dg").datagrid('getChanges', "deleted");
+                    var updated = $("#dg").datagrid('getChanges', "updated");
+                    alert(inserted.length + ' rows are Inserter!   ' + updated.length + ' rows are Updated!   ' + deleted.length + ' rows are Deleted! ');
+                    $('#dg').datagrid('acceptChanges');
+                }
+            }
+            function reject() {
+                $('#dg').datagrid('rejectChanges');
+                editIndex = undefined;
+            }
+            function getChanges() {
+                var rows = $("#dg").datagrid('getChanges');
+                alert(rows.length + ' rows are changed!');
+            }
+            function submit()
+            {
+                if ($("#dg").datagrid('getChanges').length) {
+                    var inserted = $("#dg").datagrid('getChanges', "inserted");
+                    var deleted = $("#dg").datagrid('getChanges', "deleted");
+                    var updated = $("#dg").datagrid('getChanges', "updated");
+                    var effectRow = {};
+                    if (inserted.length) {
+                        effectRow["inserted"] = JSON.stringify(inserted);
+                    }
+                    if (deleted.length) {
+                        effectRow["deleted"] = JSON.stringify(deleted);
+                    }
+                    if (updated.length) {
+                        effectRow["updated"] = JSON.stringify(updated);
+                    }
+
+//                        $.ajax({
+//                            type: "GET",
+//                            url: "/DataGrid/GiServelet?method=2",
+//                             data: {username:$("#username").val(), content:$("#content").val()},
+//                            dataType: "json",
+//                            success: function(data) {
+//
+//                            }
+//                        });
+                    $.post("/DataGrid11/GiServelet?method=2", effectRow, function(rsp) {
+                        if (rsp.status) {
+                            // $.messager.alert("提示", "提交成功！");
+                            //  $dg.datagrid('acceptChanges');
+                        }
+                    }, "JSON").error(function() {
+                        // $.messager.alert("提示", "提交错误了！");
+                    });
+                }
+            }
+        </script>
+
+</div>
+
+</body>
 </html>

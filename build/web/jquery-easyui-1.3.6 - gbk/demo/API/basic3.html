@@ -2,19 +2,87 @@
 <html>
 <head>
 	<meta charset="gbk">
-	<title>Basic ProgressBar - jQuery EasyUI Demo</title>
 	<link rel="stylesheet" type="text/css" href="../../themes/default/easyui.css">
 	<link rel="stylesheet" type="text/css" href="../../themes/icon.css">
 	<link rel="stylesheet" type="text/css" href="../demo.css">
 	<script type="text/javascript" src="../../jquery.min.js"></script>
 	<script type="text/javascript" src="../../jquery.easyui.min.js"></script>
+        <script src="../../../build/web/Easyui/js/jquery.datagrid.js" type="text/javascript"></script>
+        <script src="../../../build/web/Easyui/giCustom.js" type="text/javascript"></script>
+        <script src="../../../build/web/js/utils.js" type="text/javascript" ></script>
+<style type="text/css">
+div#container{width:1200px}
+div#header {background-color:#CCEEFF; border:1px solid #AAAAAA;height:30px; width:1270px;}
+div#menu {background-color:#CCEEFF; border:1px solid #AAAAAA;height:430px; width:300px; float:left;}
+div#content {background-color:#CCEEFF; border-right:1px solid #AAAAAA; border-top:1px solid #AAAAAA; border-bottom:1px solid #AAAAAA;
+height:430px; width:970px; float:left;}
+div#footer {background-color:#CCEEFF; width:1270px;border:1px solid #AAAAAA;clear:both; text-align:center;}
+h1 {margin-bottom:0;}
+h2 {margin-bottom:0; font-size:14px;}
+ul {margin:0;}
+li {list-style:none;}
+</style>
 </head>
 
-<frameset cols="25%,75%">
-<frame src="first.html" scrolling="auto"/>
-<frame src="right.html" />
-</frameset>
+<script type="text/javascript">
+		function getSelected(){
+			var node = $('#tt').tree('getSelected');
+			if (node){
+				var s = node.text;
+				if (node.attributes){
+					s += ","+node.attributes.p1+","+node.attributes.p2;
+				}
+				alert(s);
+			}
+		}
+	</script>
 
+<body bgcolor="#CCEEFF">
 
+<div id="container">
 
+<div id="header">
+<a href="#"text-align=center; class="easyui-linkbutton" onclick="开始搜索()" value="开始搜索" onmouseover="this.style.backgroundColor='#ff0000';" onmouseout="this.style.backgroundColor='';">开始搜索</a> </div>
+</div>
+
+    
+<div id="menu">
+
+	<div style="width:30%"></div>
+	<div class="easyui-panel" style="padding:5px;top:0px;width:300px;height:430px;">
+		<ul id="tt" class="easyui-tree" data-options="
+				url:'tojson.json',
+				method:'get',
+				animate:true,
+				onDblClick: function(node){
+					getSelected();
+				}
+		"></ul>
+	</div>
+</div>
+
+    <div id="content">
+        <table id="dg" class="easyui-datagrid" title="信息采集" style="width:970px;height:430px;"
+			data-options="rownumbers:true,
+               pagination:true,singleSelect:true,collapsible:true,url: '/DataGrid11/API_Search_right_Servelet',method:'get'">
+		<thead>
+		<tr>
+		    <th data-options="field:'id',hidden: true">ID</th>
+                    <th data-options="field:'label',width:80,align:'center',editor:'text'">分类</th>
+                    <th data-options="field:'name',width:80,align:'center',editor:'text'">名称</th>  
+                    <th data-options="field:'floor',width:80,align:'center',editor:'text'">楼层</th>
+                    <th data-options="field:'phone',width:80,align:'center',editor:'text'">电话</th> 
+                    <th data-options="field:'postcode',width:80,align:'center',editor:'text'">邮编</th>
+                    <th data-options="field:'pageabstract',width:80,align:'center',editor:'text'">简介</th>
+		</tr>
+		</thead>
+	</table>
+
+    </div>
+
+<div id="footer">表格与树</div>
+
+</div>
+
+</body>
 </html>

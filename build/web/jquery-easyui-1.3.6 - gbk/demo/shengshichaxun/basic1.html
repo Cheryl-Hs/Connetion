@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="gbk">
+	<link rel="stylesheet" type="text/css" href="../../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../demo.css">
+	<script type="text/javascript" src="../../jquery.min.js"></script>
+	<script type="text/javascript" src="../../jquery.easyui.min.js"></script>
+        <script src="../../../build/web/Easyui/js/jquery.datagrid.js" type="text/javascript"></script>
+        <script src="../../../build/web/Easyui/giCustom.js" type="text/javascript"></script>
+        <script src="../../../build/web/js/utils.js" type="text/javascript" ></script>
+<style type="text/css">
+div#container{width:1200px}
+div#header {background-color:#CCEEFF; border:1px solid #AAAAAA;height:30px; width:1200px;float:right;}
+div#menu {background-color:#CCEEFF; border:1px solid #AAAAAA;height:430px; width:300px; float:left;}
+div#content {background-color:#CCEEFF; border-right:1px solid #AAAAAA; border-top:1px solid #AAAAAA; border-bottom:1px solid #AAAAAA;
+height:430px; width:970px; float:left;}
+div#footer {background-color:#CCEEFF; width:1270px;border:1px solid #AAAAAA;clear:both; text-align:center;}
+h1 {margin-bottom:0;}
+h2 {margin-bottom:0; font-size:14px;}
+ul {margin:0;}
+li {list-style:none;}
+</style>
+</head>
+
+<script type="text/javascript">
+		function getSelected(){
+			var node = $('#tt').tree('getSelected');
+			if (node){
+				var s = node.text;
+				if (node.attributes){
+					s += ","+node.attributes.p1+","+node.attributes.p2;
+				}
+				alert(s);
+			}
+		}
+	</script>
+
+<body bgcolor="#CCEEFF">
+
+<div id="container">
+
+<div id="header">
+
+</div>
+
+    
+<div id="menu">
+
+	<div style="width:30%"></div>
+	<div class="easyui-panel" style="padding:5px;top:0px;width:300px;height:430px;">
+		<ul id="tt" class="easyui-tree" data-options="
+				url:'tojson.json',
+				method:'get',
+				animate:true,
+				onDblClick: function(node){
+					getSelected();
+				}
+		"></ul>
+	</div>
+</div>
+
+    <div id="content">
+       
+    </div>
+
+<div id="footer">表格与树</div>
+
+</div>
+
+</body>
+</html>
